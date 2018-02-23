@@ -48,3 +48,15 @@ $ chmod -r 777 /etc/init/homeassistant.conf
 ```
 
 That's it - reboot your NAS and Home Assistant should automatically start
+
+===
+If the above doesn't work for you, try:
+
+Open the DSM web interface
+Open the Text Editor (if this package is not yet installed, install it) and open a new file
+Paste the following: exec /bin/sh /volume1/homeassistant/hass-daemon start
+Save the file in the homeassistant folder as StartAtBoot.sh or whatever you would like
+Open the DSM task scheduler from the Control Panel
+Create a new trigged task > user defined script and make sure the event is set to boot, ran as root, and point it to /volume1/homeassistant/StartAtBoot.sh
+ssh into the NAS and cd to /volume1/homeassistant/ and run sudo chmod +x StartAtBoot.sh to make sure it is executable
+You can now reboot the NAS and it should autostart just fine!
